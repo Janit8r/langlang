@@ -15,7 +15,7 @@ echo "close_dhcp" > package/base-files/files/etc/closedhcp                      
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile            # 选择argon为默认主题
 
-sed -i "s/OpenWrt /${Author} 大灰狼 in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ           # 增加个性名字大灰狼
+sed -i "s/OpenWrt /大灰狼 Compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ           # 增加个性名字大灰狼
 
 sed -i "/uci commit system/i\uci set system.@system[0].hostname='DHL-OpenWrt'" $ZZZ             # 修改主机名称为x86-64-OpenWrt
 
