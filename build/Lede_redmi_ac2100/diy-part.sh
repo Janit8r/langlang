@@ -31,10 +31,10 @@ sed -i 's/"电驴下载"/"电驴下载"/g' `grep "电驴下载" -rl ./`
 sed -i 's/"存储"/"存储"/g' `grep "存储" -rl ./`
 sed -i 's/"网络加速"/"网络加速"/g' `grep "网络加速" -rl ./`
 sed -i 's/"流量"/"流量"/g' `grep "流量" -rl ./`
-sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
-sed -i 's/"TTYD 终端"/"命令窗"/g' `grep "TTYD 终端" -rl ./`
-sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
-sed -i 's/"Web 管理"/"Web"/g' `grep "Web 管理" -rl ./`
-sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
-sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
-sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
+sed -i 's/"KMS激活"/"KMS激活"/g' `grep "KMS激活" -rl ./`
+sed -i 's/"命令窗"/"命令窗"/g' `grep "命令窗" -rl ./`
+sed -i 's/"打印服务"/"打印服务"/g' `grep "打印服务" -rl ./`
+sed -i 's/"Web"/"Web"/g' `grep "Web" -rl ./`
+sed -i 's/"改密码"/"改密码"/g' `grep "改密码" -rl ./`
+sed -i 's/"监控"/"监控"/g' `grep "监控" -rl ./`
+sed -i 's/"Argon设置"/"Argon设置"/g' `grep "Argon设置" -rl ./`
