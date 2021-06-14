@@ -5,7 +5,7 @@
 # Copyright (C) 2019 P3TERX <https://p3terx.com>
 # <https://github.com/P3TERX/Actions-OpenWrt.git>
 #
-name: 编译X86-64固件
+name: 编译OpenWrt固件
 on:
   workflow_dispatch:
     inputs:
@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lede_source]
+        target: [Lede_source,Lienol_source,Project_source,Spirit_source]
 
         # [Lede_source,Lienol_source,Project_source,Spirit_source]
 
@@ -128,18 +128,22 @@ jobs:
           source "${PATH1}/common.sh" && Diy_lede
           cp -Rf "${Home}"/build/common/LEDE/files "${Home}"
           cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
+          cp -Rf "${Home}"/build/common/LEDE/patches/* "${PATH1}/patches"
         elif [[ "${REPO_BRANCH}" == "19.07" ]]; then
           source "${PATH1}/common.sh" && Diy_lienol
           cp -Rf "${Home}"/build/common/LIENOL/files "${Home}"
           cp -Rf "${Home}"/build/common/LIENOL/diy/* "${Home}"
+          cp -Rf "${Home}"/build/common/LIENOL/patches/* "${PATH1}/patches"
         elif [[ "${REPO_BRANCH}" == "openwrt-18.06" ]]; then
           source "${PATH1}/common.sh" && Diy_1806
           cp -Rf "${Home}"/build/common/PROJECT/files "${Home}"
           cp -Rf "${Home}"/build/common/PROJECT/diy/* "${Home}"
+          cp -Rf "${Home}"/build/common/PROJECT/patches/* "${PATH1}/patches"
         elif [[ "${REPO_BRANCH}" == "openwrt-21.02" ]]; then
           source "${PATH1}/common.sh" && Diy_2102
           cp -Rf "${Home}"/build/common/SPIRIT/files "${Home}"
           cp -Rf "${Home}"/build/common/SPIRIT/diy/* "${Home}"
+          cp -Rf "${Home}"/build/common/SPIRIT/patches/* "${PATH1}/patches"
         fi
         source "${PATH1}/common.sh" && Diy_all
         /bin/bash "${PATH1}/$DIY_PART_SH"
