@@ -47,12 +47,10 @@ sed -i "/exit 0/i\chmod +x /etc/webweb.sh && source /etc/webweb.sh > /dev/null 2
 Diy_lienol() {
 
 find . -name 'luci-app-netdata' -o -name 'netdata' -o -name 'luci-theme-argon' | xargs -i rm -rf {}
+rm -rf feeds/packages/libs/libcap
 
 git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
 git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-
-rm -rf feeds/packages/libs/libcap
-svn co https://github.com/coolsnowwolf/packages/trunk/libs/libcap feeds/packages/libs/libcap > /dev/null 2>&1
 
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += luci-app-passwall/g' target/linux/x86/Makefile
 sed -i "/exit 0/i\chmod +x /etc/webweb.sh && source /etc/webweb.sh > /dev/null 2>&1" package/base-files/files/etc/rc.local
@@ -91,8 +89,6 @@ Diy_all() {
 
 git clone --depth 1 -b "${REPO_BRANCH}" https://github.com/281677160/openwrt-package
 cp -Rf openwrt-package/* "${Home}" && rm -rf "${Home}"/openwrt-package
-
-cp -Rf "${PATH1}"/AutoBuild_Tools.sh package/base-files/files/bin
 
 if [[ ${REGULAR_UPDATE} == "true" ]]; then
 	git clone https://github.com/281677160/luci-app-autoupdate feeds/luci/applications/luci-app-autoupdate
@@ -208,15 +204,6 @@ fi
 Diy_chuli() {
 mkdir -p "${Home}"/files/etc/config
 case "${REPO_BRANCH}" in
-"master")
-	if [[ "${TARGET_PROFILE}" == "x86-64" ]]; then
-		cp -Rf "${Home}"/build/common/Custom/i915-5.4 "${Home}"/target/linux/x86/config-5.4
-		cp -Rf "${Home}"/build/common/Custom/i915-4.19 "${Home}"/target/linux/x86/config-4.19
-	elif [[ "${TARGET_PROFILE}" == "d-team_newifi-d2" ]]; then
-		cp -Rf "${Home}"/build/common/Custom/mac80211.sh "${Home}"/package/kernel/mac80211/files/lib/wifi/mac80211.sh
-		cp -Rf "${Home}"/build/common/Custom/system_d-team_newifi-d2 "${Home}"/files/etc/config/system
-	fi
-;;
 "19.07") 
 	if [[ "${TARGET_PROFILE}" == "x86-64" ]]; then
 		cp -Rf "${Home}"/build/common/Custom/i915-4.14 "${Home}"/target/linux/x86/config-4.14

@@ -5,7 +5,7 @@
 # Copyright (C) 2019 P3TERX <https://p3terx.com>
 # <https://github.com/P3TERX/Actions-OpenWrt.git>
 #
-name: 编译Lede_opewrtR3G固件
+name: 编译OpenWrt固件
 on:
   workflow_dispatch:
     inputs:
@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lede_opewrtR3G]
+        target: [Lede_source]
 
         # [Lede_source,Lienol_source,Project_source,Spirit_source]
 
@@ -58,6 +58,7 @@ jobs:
         echo "UPLOAD_RELEASE=${UPLOAD_RELEASE}" >> $GITHUB_ENV
         echo "SERVERCHAN_SCKEY=${SERVERCHAN_SCKEY}" >> $GITHUB_ENV
         echo "REGULAR_UPDATE=${REGULAR_UPDATE}" >> $GITHUB_ENV
+        echo "BY_INFORMATION=${BY_INFORMATION}" >> $GITHUB_ENV
         echo "CangKu=${Apidz##*/}" >> $GITHUB_ENV
         echo "Modelfile=${{matrix.target}}" >> $GITHUB_ENV
 
@@ -81,6 +82,7 @@ jobs:
           echo "CODE=Spirit" >> $GITHUB_ENV
           echo "OpenWrt_name=21.02" >> $GITHUB_ENV
         fi
+
 
     - name: 电报机器人信息通知
       run: |
@@ -195,8 +197,10 @@ jobs:
         if [ "${REGULAR_UPDATE}" == "true" ]; then
           source "${PATH1}/upgrade.sh" && Diy_Part2 > /dev/null 2>&1
         fi
-        source "${PATH1}/upgrade.sh" > /dev/null 2>&1
-        source "${PATH1}/common.sh" && Diy_xinxi
+        if [ "${BY_INFORMATION}" == "true" ]; then
+          source "${PATH1}/upgrade.sh" > /dev/null 2>&1
+          source "${PATH1}/common.sh" && Diy_xinxi
+        fi
 
     - name: 下载软件包
       id: package

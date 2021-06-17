@@ -1,7 +1,6 @@
 #!/bin/bash
+ZZZ="package/emortal/default-settings/files/zzz-default-settings"
 # Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
-#
-# DIY扩展二合一了，在此处可以增加插件
 #
 
 sed -i "/uci commit fstab/a\uci commit network" $ZZZ
@@ -26,15 +25,14 @@ sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                          
 #sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                                      # 修改内核版本为4.19
 
 
-# 修改插件名字
+# 修改插件名字（修改名字后不知道会不会对插件功能有影响，自己多测试）
 sed -i 's/"aMule设置"/"电驴下载"/g' `grep "aMule设置" -rl ./`
 sed -i 's/"网络存储"/"存储"/g' `grep "网络存储" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
 sed -i 's/"实时流量监测"/"流量"/g' `grep "实时流量监测" -rl ./`
 sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
-sed -i 's/"终端"/"命令窗"/g' `grep "终端" -rl ./`
+sed -i 's/"TTYD 终端"/"命令窗"/g' `grep "TTYD 终端" -rl ./`
 sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
 sed -i 's/"Web 管理"/"Web"/g' `grep "Web 管理" -rl ./`
 sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
 sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
-sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
