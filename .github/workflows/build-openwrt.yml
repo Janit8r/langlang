@@ -38,7 +38,7 @@ jobs:
         target: [Lede_source]
 
         # [Lede_source,Lienol_source,Mortal_source,openwrt_amlogic]
-
+         #【Lede_opewrtR3G ，Lede_nanopi_r2s】
     steps:
     - name: 准备结束
       uses: actions/checkout@v2
