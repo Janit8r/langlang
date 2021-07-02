@@ -4,7 +4,7 @@
 #
 
 sed -i "/uci commit fstab/a\uci commit network" $ZZZ
-sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.2'" $ZZZ                      # IPv4 地址(openwrt后台地址)
+sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
 sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
 sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.2.2'" $ZZZ                     # IPv4 网关
 sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.2.255'" $ZZZ                 # IPv4 广播
@@ -13,7 +13,7 @@ sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ            
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile           # 选择argon为默认主题
 
-sed -i "s/OpenWrt /${Author} Compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ          # 增加个性名字${Author}默认为你的github账号
+sed -i "s/OpenWrt /大灰狼 Compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ          # 增加个性名字${Author}默认为你的github账号
 
 sed -i "/uci commit system/i\uci set system.@system[0].hostname='Phicomm-N1'" $ZZZ                # 修改主机名称为Phicomm-N1
 
