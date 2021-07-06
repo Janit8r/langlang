@@ -65,7 +65,7 @@ jobs:
     - name: 公 告
       run: |
         echo
-        git clone --depth 1 -b main https://github.com/shidahuilang/common build/common > /dev/null 2>&1
+        git clone --depth 1 -b main https://github.com/281677160/common build/common > /dev/null 2>&1
         chmod -R +x "${GITHUB_WORKSPACE}/build/common"
         echo "Compile_Date=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
         if [[ "${REPO_BRANCH}" == "master" ]]; then
