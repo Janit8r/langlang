@@ -3,8 +3,9 @@
 # DIY扩展二合一了，在此处可以增加插件
 #
 echo "close_dhcp" > package/base-files/files/etc/closedhcp                                         # 关闭DHCP服务
+sed -i 's/192.168.1.1/10.10.10.251/g' package/base-files/files/bin/config_generate
 sed -i "/uci commit fstab/a\uci commit network" $ZZZ
-sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
+#sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
 #sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
 #sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.2.1'" $ZZZ                     # IPv4 网关
 #sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.2.255'" $ZZZ                 # IPv4 广播
