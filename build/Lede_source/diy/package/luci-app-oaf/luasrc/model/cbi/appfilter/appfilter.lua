@@ -158,7 +158,7 @@ s.anonymous = true
 users = s:option(MultiValue, "users", "", translate("Select at least one user, otherwise it will take effect for all users"))
 users.widget="checkbox"
 --users.widget="select"
-users.size=1
+users.size=6
 
 local fd = io.open("/tmp/dev_list", "r")
 if not fd then return m end
@@ -167,19 +167,21 @@ while true do
 	if not line then
 		break
 	end
-	if not line:match("Id*") then
+	if not string.match(line, "^Id") then
 		local ip=get_cmd_result(string.format("echo '%s' | awk '{print $3}'", line))
 		local mac=get_cmd_result(string.format("echo '%s' | awk '{print $2}'", line))
+		local hostname=get_cmd_result(string.format("echo '%s' | awk '{print $4}'", line))
 		if mac ~= nil then
-			local hostname=get_hostname_by_mac(mac)
+
 			if not hostname or hostname == "*" then
 				users:value(mac, mac);
 			else
-				users:value(mac, hostname);
+				users:value(mac, hostname.."("..mac..")");
 			end
 		end
 	end
 end
+fd:close()
 
 local config_users=m.uci:get_all("appfilter.user.users")
 if config_users~=nil then
