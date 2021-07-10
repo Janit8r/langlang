@@ -6,6 +6,6 @@
              
       OpenWrt AutoBuild by Telegram DaHuiLang
  -----------------------------------------------------
-      OpenWrt SNAPSHOT r1-2c345cb96  Lede_x86_64
+      %D %V %C  Lede_x86_64
       update   bash /bin/AutoUpdate.sh
  -----------------------------------------------------
