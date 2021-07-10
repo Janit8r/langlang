@@ -2,7 +2,7 @@
 # Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
 # DIY扩展二合一了，在此处可以增加插件
 #
-#echo "close_dhcp" > package/base-files/files/etc/closedhcp                                         # 关闭DHCP服务
+echo "close_dhcp" > package/base-files/files/etc/closedhcp                                         # 关闭DHCP服务
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 sed -i "/uci commit fstab/a\uci commit network" $ZZZ
 #sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
@@ -10,7 +10,7 @@ sed -i "/uci commit fstab/a\uci commit network" $ZZZ
 #sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.2.1'" $ZZZ                     # IPv4 网关
 #sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.2.255'" $ZZZ                 # IPv4 广播
 #sed -i "/uci commit network/i\uci set network.lan.dns='114.114.114.114 223.5.5.5'" $ZZZ           # DNS(多个DNS要用空格分开)
-#sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
+sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
 
 sed -i 's/luci-theme-bootstrap/luci-theme-opentomcat/g' feeds/luci/collections/luci/Makefile           # 选择argon为默认主题
 
