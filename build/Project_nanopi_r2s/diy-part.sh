@@ -20,7 +20,7 @@ sed -i "/uci commit system/i\uci set system.@system[0].hostname='DHL-OpenWrt'" $
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                            # 设置密码为空
 
 #sed -i 's/PATCHVER:=5.10/PATCHVER:=5.4/g' target/linux/x86/Makefile                              # 默认内核5.10，修改内核为5.4
-git clone https://github.com/shidahuilang/openwrt-package
+git clone https://github.com/shidahuilang/openwrt-package.git
 
 # 修改插件名字
 sed -i 's/"aMule设置"/"电驴下载"/g' `grep "aMule设置" -rl ./`
