@@ -5,7 +5,7 @@
 # Copyright (C) 2019 P3TERX <https://p3terx.com>
 # <https://github.com/P3TERX/Actions-OpenWrt.git>
 #
-name: 编译R3G固件
+name: 编译OpenWrtR3G固件
 on:
   workflow_dispatch:
     inputs:
@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lede_opewrtR3G]
+        target: [Lede_source,Lienol_source,Mortal_source,openwrt_amlogic]
 
         # [Lede_source,Lienol_source,Mortal_source,openwrt_amlogic]
 
@@ -80,7 +80,8 @@ jobs:
           echo "CODE=Mortal" >> $GITHUB_ENV
           echo "OpenWrt_name=21.02" >> $GITHUB_ENV
         fi
-        if [ -n "$(ls -A build/common/0707gg 2>/dev/null)" ]; then
+        echo "NETIP=package/base-files/files/bin/networkip" >> $GITHUB_ENV
+        if [ -n "$(ls -A build/common/0711gg 2>/dev/null)" ]; then
           source build/common/common.sh && Diy_gonggao
         else
           source build/common/common.sh && Diy_tongzhi
