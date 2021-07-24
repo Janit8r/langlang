@@ -2,7 +2,7 @@
 # Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
 # DIY扩展二合一了，在此处可以增加插件
 #
-
+sed -i 's/PATCHVER:=5.4/PATCHVER:=5.10/g' target/linux/rockchip/Makefile
 sed -i "/uci commit fstab/a\uci commit network" $ZZZ
 sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
 sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
@@ -19,7 +19,7 @@ sed -i "/uci commit system/i\uci set system.@system[0].hostname='OpenWrt-DHL'" $
 
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                            # 设置密码为空
 
-sed -i 's/PATCHVER:=5.4/PATCHVER:=5.10/g' target/linux/rockchip/image/Makefile                             # 默认内核5.10，修改内核为5.4
+#sed -i 's/PATCHVER:=5.4/PATCHVER:=5.10/g' target/linux/rockchip/Makefile                             # 默认内核5.10，修改内核为5.4
 
 
 # 修改插件名字
