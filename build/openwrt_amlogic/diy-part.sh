@@ -3,13 +3,18 @@
 # DIY扩展二合一了，在此处可以增加插件
 #
 
-sed -i "/uci commit fstab/a\uci commit network" $ZZZ
-sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
-sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
-sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.2.2'" $ZZZ                     # IPv4 网关
-sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.2.255'" $ZZZ                 # IPv4 广播
-sed -i "/uci commit network/i\uci set network.lan.dns='114.114.114.114'" $ZZZ                     # DNS(多个DNS要用空格分开)
-sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
+cat >$NETIP <<-EOF
+uci set network.lan.ipaddr='192.168.2.1'                                    # IPv4 地址(openwrt后台地址)
+uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
+uci set network.lan.gateway='192.168.2.1'                                   # IPv4 网关
+uci set network.lan.broadcast='192.168.2.255'                               # IPv4 广播
+uci set network.lan.dns='114.114.114.114 223.5.5.5'                         # DNS(多个DNS要用空格分开)
+uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
+uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
+uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
+uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释
+uci set system.@system[0].hostname='Phicomm-N1'                             # 修改主机名称为Phicomm-N1
+EOF
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile           # 选择argon为默认主题
 
@@ -24,8 +29,8 @@ sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                          
 
 # 设置打包固件的机型，内核组合（请看说明）
 cat >$GITHUB_WORKSPACE/amlogic_openwrt <<-EOF
-amlogic_model=s905x3_s905x2_s905x_s905d_s922x_s912
-amlogic_kernel=5.12.12_5.4.127
+amlogic_model=s905d
+amlogic_kernel=5.12.12
 rootfs_size=1200
 EOF
 
